@@ -4,7 +4,11 @@ import { createScene } from "./scene";
 import { createCamera } from "./camera";
 import { createSphere } from "./sphere";
 import { createLight } from "./light";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
+//defining controls
+
+// defining sizes
 const sizes = {
 	width: window.innerWidth,
 	height: window.innerHeight,
@@ -33,11 +37,14 @@ const renderer = new THREE.WebGLRenderer({
 	antialias: true,
 });
 
+const controls = new OrbitControls(camera, renderer.domElement);
+
 function animate() {
 	requestAnimationFrame(animate);
 	sizes.width = window.innerWidth;
 	sizes.height = window.innerHeight;
 	renderer.setSize(sizes.width, sizes.height);
 	renderer.render(scene, camera);
+	controls.update();
 }
 animate();
